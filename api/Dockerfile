@@ -1,6 +1,7 @@
 # Construïm amb Gradle i distribuïm només l'aplicació i les dependències.
 FROM gradle:9.7.1-jdk21 AS construccio
 WORKDIR /home/gradle/project
+RUN chown gradle:gradle /home/gradle/project
 COPY --chown=gradle:gradle settings.gradle.kts build.gradle.kts ./
 COPY --chown=gradle:gradle src ./src
 USER gradle

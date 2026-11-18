@@ -18,5 +18,32 @@ services:
       timeout: 5s
       retries: 10
 
+  api:
+    build:
+      context: ./api
+    ports:
+      - "127.0.0.1:${API_PORT}:8080"
+    environment:
+      API_PORT: "8080"
+      AD_DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}?currentSchema=ribera,public
+      AD_DB_USER: ${POSTGRES_USER}
+      AD_DB_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "java",
+          "-cp",
+          "/app/lib/*",
+          "org.connectantribera.infra.ComprovaSalut",
+        ]
+      interval: 10s
+      timeout: 6s
+      retries: 6
+      start_period: 30s
+
 volumes:
   postgres_dades:
