@@ -1,0 +1,7 @@
+# Configuració local amb la clau de PostgreSQL.
+.env
+.env.*
+!.env.example
+.cache/
+api/.gradle/
+api/build/
