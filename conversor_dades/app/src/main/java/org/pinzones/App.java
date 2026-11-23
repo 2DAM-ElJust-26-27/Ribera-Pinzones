@@ -18,6 +18,7 @@ public class App {
                     + carpeta.toAbsolutePath());
             return;
         }
+        
 
         // Obtener los archivos de la carpeta
         try (Stream<Path> archivos = Files.list(carpeta)) {
