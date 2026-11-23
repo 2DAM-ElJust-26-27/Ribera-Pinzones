@@ -57,7 +57,7 @@ public class App {
                     break;
 
                 case "xml":
-                    System.out.println("Archivo XML detectado: " + nombre);
+                    FitxersXML.leer(archivo);
                     break;
 
                 default:
