@@ -1,41 +1,43 @@
 package org.pinzones;
 
+import java.io.IOException;
 import java.nio.file.Path;
-import java.io.BufferedReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
-public class FitxersJSON {
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
-    public static void main(String[] args) throws java.io.IOException {
+public final class FitxersJSON {
 
-        Path dades = Path.of("conversor_dades", "app", "dades");
+    public static void leer(Path archivo) throws IOException {
 
-        ArrayList<Path> RutaJson = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
 
+        // Leer el archivo JSON
+        JsonNode raiz = mapper.readTree(archivo.toFile());
 
-        try (Stream<Path> entrades = Files.walk(dades)) {
-            
-            entrades
-                    .filter(Files::isRegularFile)
-                    .filter(path -> path.toString().endsWith(".json"))
-                    .forEach(RutaJson::add);
-        }
+        System.out.println("\nArchivo: " + archivo.getFileName());
 
-        for (int i = 0; i < RutaJson.size(); i++) {
+        // Comprobar si el JSON contiene una lista
+        if (raiz.isArray()) {
 
-            System.out.println("\n\n\n\n\n" + RutaJson.get(i) + " =================================");
+            System.out.println("Elementos encontrados: " + raiz.size());
 
-            try (BufferedReader lector = Files.newBufferedReader(RutaJson.get(i), StandardCharsets.UTF_8)) {
-                String linia;
-                while ((linia = lector.readLine()) != null) {
-                    System.out.println(linia);
+            // Recorrer cada objeto de la lista
+            for (JsonNode objeto : raiz) {
+
+                System.out.println("\n----------------------");
+
+                for (var campo : objeto.properties()) {
+
+                    String nombre = campo.getKey();
+                    JsonNode valor = campo.getValue();
+
+                    System.out.println(nombre + ": " + valor);
                 }
             }
-        
+
+        } else {
+            System.out.println("El JSON no contiene una lista.");
         }
-    
     }
 }
