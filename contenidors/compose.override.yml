@@ -1,4 +1,0 @@
-services:
-  postgres:
-    ports:
-      - "100.78.195.111:5435:5435"
