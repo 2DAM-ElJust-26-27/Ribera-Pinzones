@@ -1,0 +1,13 @@
+[ {
+  "id" : 1,
+  "nom" : "Ratolí",
+  "preu" : 19.95
+}, {
+  "id" : 2,
+  "nom" : "Teclat",
+  "preu" : 29.95
+}, {
+  "id" : 4,
+  "nom" : "Monitor",
+  "preu" : 189.50
+} ]

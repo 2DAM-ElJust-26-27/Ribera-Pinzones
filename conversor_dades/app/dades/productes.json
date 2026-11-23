@@ -1,0 +1,4 @@
+[
+  {"id": 1, "nom": "Ratolí", "preu": 19.95, "etiquetes": ["usb"], "disponible": true},
+  {"id": 2, "nom": "Teclat", "preu": 29.95, "etiquetes": ["usb", "perifèric"], "disponible": true}
+]

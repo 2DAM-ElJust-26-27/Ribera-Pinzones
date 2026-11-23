@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<productes>
+    <producte id="2">
+        <nom>Teclat</nom>
+        <preu>29.95</preu>
+    </producte>
+    <producte id="3">
+        <nom>Monitor</nom>
+        <preu>189.50</preu>
+    </producte>
+</productes>

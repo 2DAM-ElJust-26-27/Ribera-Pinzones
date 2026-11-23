@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<biblioteca>
+    <llibre id="1">
+        <titol>Tirant lo Blanc</titol>
+        <autor>Joanot Martorell</autor>
+    </llibre>
+    <llibre id="2">
+        <titol>El llibre de les bèsties</titol>
+        <autor>Ramon Llull</autor>
+    </llibre>
+</biblioteca>

@@ -1,0 +1,13 @@
+[ {
+  "id" : 4,
+  "autor" : "Isabel-Clara Simó",
+  "titol" : "Júlia"
+}, {
+  "id" : 1,
+  "autor" : "Joanot Martorell",
+  "titol" : "Tirant lo Blanc"
+}, {
+  "id" : 2,
+  "autor" : "Ramon Llull",
+  "titol" : "El llibre de les bèsties"
+} ]
