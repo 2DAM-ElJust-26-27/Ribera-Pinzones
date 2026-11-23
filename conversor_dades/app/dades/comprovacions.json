@@ -1,0 +1,22 @@
+{
+  "centres_amb_serveis_majors": [
+    "CEN05"
+  ],
+  "serveis_prestats_cullera": [
+    "SER12",
+    "SER21",
+    "SER23"
+  ],
+  "serveis_smg_cullera": [],
+  "serveis_smg_sueca": [
+    "SER16",
+    "SER17"
+  ],
+  "centres_residencials_sueca": [
+    "CEN01",
+    "CEN04",
+    "CEN08",
+    "CEN09",
+    "CEN13"
+  ]
+}

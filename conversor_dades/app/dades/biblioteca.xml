@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<biblioteca>
-  <llibre id="1"><titol>Tirant lo Blanc</titol><autor>Joanot Martorell</autor></llibre>
-  <llibre id="2"><titol>El llibre de les bèsties</titol><autor>Ramon Llull</autor></llibre>
-  <llibre id="3"><titol>Nosaltres els valencians</titol><autor>Joan Fuster</autor></llibre>
-  <llibre id="4"><titol>Llibre de meravelles</titol><autor>Vicent Andrés Estellés</autor></llibre>
-  <llibre id="5"><titol>El virgo de Visanteta</titol><autor>Josep Bernat i Baldoví</autor></llibre>
-</biblioteca>

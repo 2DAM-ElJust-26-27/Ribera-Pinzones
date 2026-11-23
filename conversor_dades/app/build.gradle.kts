@@ -21,9 +21,8 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // Biblioteques dels exemples dels apartats 5 i 6.
-    implementation("tools.jackson.core:jackson-databind:3.2.3")
-    implementation("org.apache.commons:commons-csv:1.14.1")
+    // This dependency is used by the application.
+    implementation(libs.guava)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -35,16 +34,10 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "com.ieseljust.ad.App"
+    mainClass = "org.example.App"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
-}
-
-
-tasks.named<JavaExec>("run") {
-    // Les rutes relatives dels exemples parteixen de la carpeta app/.
-    workingDir = projectDir
 }
