@@ -33,4 +33,23 @@ class _MyAppState {
     _serveis = _repository.getServeis();
     _territori = _repository.getTerritori();
   }
+  
+}
+
+class Repositori {
+    late String urlBase;
+    late RiberaApi api;
+
+    Repositori(this.urlBase) {
+        this.urlBase = urlBase;
+        this.api = RiberaApi(urlBase);
+    }
+
+    Future <List<Cataleg>> llistarCataleg() async {
+        return (await api.llistarCataleg()).map(((cataleg) {
+            return Cataleg.fromJson(cataleg, urlBase);
+        })).toList();
+    }
+
+
 }

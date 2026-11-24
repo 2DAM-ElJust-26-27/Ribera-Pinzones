@@ -2,9 +2,9 @@ package org.connectantribera.service;
 
 import java.sql.SQLException;
 import org.connectantribera.infra.ConnexioBD;
-import org.connectantribera.repository.Repositori;
 import java.sql.Connection;
 import java.util.List;
+import org.connectantribera.repository.Repositori;
 
 /** Comprovació d'infraestructura; no necessita encara taules del domini. */
 public final class Servici {
@@ -14,5 +14,28 @@ public final class Servici {
     public Servici(ConnexioBD configuracio, Repositori repositori) {
         this.configuracio = configuracio;
         this.repositori = repositori;
+    }
+
+    public List<?> llistarTipus(String tipus) throws SQLException {
+        try (Connection connexio = configuracio.obrir()) {
+            return repositori.llistarTipus(connexio);
+        }
+    }
+
+    public List<?> llistarCategories(String tipus) throws SQLException {
+       try (Connection connexio = configuracio.obrir()) {
+            return switch (tipus) {
+                case "cataleg" -> repositori.llistarCategoriesServei(connexio);
+                case "centres" -> repositori.llistarCentres(connexio);
+                case "contactes" -> repositori.llistarContactes(connexio);
+                case "entitats" -> repositori.llistarEntitats(connexio);
+                case "horaris" -> repositori.llistarHoraris(connexio);
+                case "serveis" -> repositori.llistarServeis(connexio);
+                case "territori" -> repositori.llistarTerritori(connexio);
+                default -> throw new IllegalArgumentException(
+                    "Tipus desconegut: " + tipus
+                );
+            };
+        }
     }
 }

@@ -1,3 +1,9 @@
+import org.connectantribera.infra.ConnexioBD;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import io.javalin.http.Context;
+
 public class JsonView {
     private final ConnexioBD configuracio;
 

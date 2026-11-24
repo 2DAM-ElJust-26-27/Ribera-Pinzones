@@ -3,7 +3,6 @@ package org.connectantribera.infra;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 /** Configuració immutable. Cada operació obri i tanca la seua connexió JDBC. */
 public record ConnexioBD(String url, String usuari, String contrasenya) {

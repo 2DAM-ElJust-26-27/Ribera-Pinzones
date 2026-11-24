@@ -2,35 +2,24 @@ package org.connectantribera.controller;
 
 import io.javalin.http.Context;
 import java.sql.SQLException;
-import org.connectantribera.service.SalutService;
+import org.connectantribera.service.Servici;
+import java.util.List;
+import org.connectantribera.view.JsonView;
+import org.connectantribera.infra.ConnexioBD;
+import org.connectantribera.repository.Repositori;
 
 public final class Controlador {
-    private final Service servei;
+    private final Servici servei;
     private final JsonView vista;
 
-    public Controlador(Service servei, JsonView vista) { this.servei = servei; this.vista = vista; }
+    public Controlador(Servici servei, JsonView vista) { this.servei = servei; this.vista = vista; }
 
     public void get(Context ctx) throws SQLException {
         String tipus = ctx.pathParam("tipus");
+        ctx.json(servei.llistarTipus(tipus));
 
         if (tipus == null || tipus.trim().isEmpty()) {
             throw new IllegalArgumentException("Falta el paràmetre 'tipus'");
         }
-
-        List<?> resultat = switch (tipus) {
-            case "cataleg" -> servei.llistarCataleg();
-            case "centres" -> servei.llistarCentres();
-            case "contactes" -> servei.llistarContactes();
-            case "entitats" -> servei.llistarEntitats();
-            case "horaris" -> servei.llistarHoraris();
-            case "serveis" -> servei.llistarServeis();
-            case "territori" -> servei.llistarTerritori();
-            default -> throw new IllegalArgumentException(
-                "Tipus desconegut: " + tipus
-            );
-        };
-
-        ctx.json(resultat);
     }
-
 }
