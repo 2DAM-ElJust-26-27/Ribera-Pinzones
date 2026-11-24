@@ -12,5 +12,6 @@ public class Cataleg {
     public void setCodi(String codi) { this.codi = codi; }
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }
+
 }
     

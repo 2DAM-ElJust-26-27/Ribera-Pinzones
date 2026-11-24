@@ -23,7 +23,6 @@ public record ConnexioBD(String url, String usuari, String contrasenya) {
     }
 
     public Connection obrir() throws SQLException {
-        var propietats = new Properties();
         return DriverManager.getConnection(url, usuari, contrasenya);
     }
 

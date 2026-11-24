@@ -13,13 +13,8 @@ public final class Controlador {
     public void get(Context ctx) throws SQLException {
         String tipus = ctx.pathParam("tipus");
 
-        if (tipus.equals("salut")) {
-            if (servei.baseDisponible()) {
-                ctx.status(200).json("{\"estat\":\"correcte\"}");
-            } else {
-                ctx.status(503).json("{\"estat\":\"no_disponible\"}");
-            }
-            return;
+        if (tipus == null || tipus.trim().isEmpty()) {
+            throw new IllegalArgumentException("Falta el paràmetre 'tipus'");
         }
 
         List<?> resultat = switch (tipus) {

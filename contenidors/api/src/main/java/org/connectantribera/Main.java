@@ -1,14 +1,14 @@
 package org.connectantribera;
 
 import io.javalin.Javalin;
-import org.connectantribera.controller.SalutController;
 import org.connectantribera.infra.ConnexioBD;
-import org.connectantribera.service.SalutService;
 import org.connectantribera.view.JsonView;
 import org.connectantribera.repository.Repositori;
 import java.sql.SQLException;
 import io.javalin.http.Context;
 import io.javalin.Location;
+import org.connectantribera.controller.Controlador;
+import org.connectantribera.service.Servici;
 
 /** Punt de composició inicial. Les rutes del directori s'afegiran posteriorment. */
 public final class Main {

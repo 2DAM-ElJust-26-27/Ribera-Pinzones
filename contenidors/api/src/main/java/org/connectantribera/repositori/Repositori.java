@@ -4,20 +4,19 @@ import java.util.List;
 import org.connectantribera.infra.ConnexioBD;
 
 public class Repositori {
-    public List<?> llistarCategories(String tipus) throws SQLException {
-       try (Connection connexio = configuracio.obrir()) {
-            return switch (tipus) {
-                case "cataleg" -> repositori.llistarCataleg(connexio);
-                case "centres" -> repositori.llistarCentres(connexio);
-                case "contactes" -> repositori.llistarContactes(connexio);
-                case "entitats" -> repositori.llistarEntitats(connexio);
-                case "horaris" -> repositori.llistarHoraris(connexio);
-                case "serveis" -> repositori.llistarServeis(connexio);
-                case "territori" -> repositori.llistarTerritori(connexio);
-                default -> throw new IllegalArgumentException(
-                    "Tipus desconegut: " + tipus
-                );
-            };
-        }
+    late final String urlBase;
+    late HealthyApi api;
+
+    Repositori(this.urlBase) {
+        this.urlBase = urlBase;
+        this.api = HealthyApi(urlBase);
     }
+
+    Future <List<Cataleg>> llistarCataleg() async {
+        return (await api.llistarCataleg()).map(((cataleg) {
+            return Cataleg.fromJson(CatalegJson, urlBase);
+        })).toList();
+    }
+
+
 }
