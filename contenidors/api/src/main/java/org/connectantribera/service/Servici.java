@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import org.connectantribera.infra.ConnexioBD;
 
 /** Comprovació d'infraestructura; no necessita encara taules del domini. */
-public final class SalutService {
+public final class Servici {
     private final ConnexioBD configuracio;
 
-    public SalutService(ConnexioBD configuracio) { this.configuracio = configuracio; }
+    public Servici(ConnexioBD configuracio) { this.configuracio = configuracio; }
 
     public boolean baseDisponible() throws SQLException {
         try (var connexio = configuracio.obrir();

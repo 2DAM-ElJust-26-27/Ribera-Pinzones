@@ -1,84 +1,36 @@
+import 'package:app/screens/mainScreenState.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
-void main() async {
-  // Incialitzem Flutter de forma manual, abans de llançar runApp
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Forcem el mode horitzontal
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp, // Normal Portrait
-    DeviceOrientation.portraitDown, // Upside-Down Portrait
-  ]);
-
-  // I ara llancem l'aplicació
-  runApp(const MyApp());
+void main() {
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _MyAppState();
+}
+
+class _MyAppState {
+  int _selectedIndex = 0;
+  late Future<List<Cataleg>> _cataleg;
+  late Future<List<Centres>> _centres;
+  late Future<List<Contactes>> _contactes;
+  late Future<List<Entitats>> _entitats;
+  late Future<List<Horaris>> _horaris;
+  late Future<List<Serveis>> _serveis;
+  late Future<List<Territori>> _territori;
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Healthys',
-      debugShowCheckedModeBanner: false,
-      home: ProductGridScreen(),
-    );
+  void initState() {
+    super.initState();
+    _cataleg = _repository.getCataleg();
+    _centres = _repository.getCentres();
+    _contactes = _repository.getContactes();
+    _entitats = _repository.getEntitats();
+    _horaris = _repository.getHoraris();
+    _serveis = _repository.getServeis();
+    _territori = _repository.getTerritori();
   }
 }
-
-class LauncherScreen extends StatelessWidget {
-  const LauncherScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Selecció de pantalla")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => ProductListScreen(),
-                  ),
-                );
-              },
-              child: const Text("Llista de productes"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => ProductGridScreen(),
-                  ),
-                );
-              },
-              child: const Text("Grid de productes"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => ProducteScreen(),
-                  ),
-                );
-              },
-              child: const Text("Informació d'un producte"),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-
