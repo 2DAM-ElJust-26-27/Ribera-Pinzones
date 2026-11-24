@@ -41,7 +41,7 @@ public class ImportadorTerritori {
                     String nomMunicipi = datos[1].trim();
                     String codiComarca = datos[2].trim();
                     String nomComarca = datos[3].trim();
-                    String fontCodi = datos[4].trim();
+                    //String fontCodi = datos[4].trim();
 
                     // 1. Insertar comarca si no existe
                     long comarcaId;

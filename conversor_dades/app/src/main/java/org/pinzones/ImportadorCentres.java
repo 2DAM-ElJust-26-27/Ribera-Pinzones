@@ -227,7 +227,7 @@ public class ImportadorCentres {
         JsonNode valor = nodo.get(campo);
 
         return valor == null || valor.isNull()
-                ? null : valor.asText();
+                ? null : valor.toString();
     }
 
 

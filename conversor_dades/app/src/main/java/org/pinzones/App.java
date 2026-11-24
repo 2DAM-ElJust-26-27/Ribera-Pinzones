@@ -90,6 +90,7 @@ public class App {
     }
 
     // Obtener la extensión del archivo
+    /* 
     private static String obtenerExtensionA(String archivo) {
 
         int divisor = archivo.lastIndexOf('.');
@@ -100,5 +101,6 @@ public class App {
 
         return "";
     }
+    */
 }
 
