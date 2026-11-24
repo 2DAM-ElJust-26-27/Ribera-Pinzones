@@ -14,15 +14,6 @@ public record ConnexioBD(String url, String usuari, String contrasenya) {
                 requireEnv("AD_DB_PASSWORD"));
     }
 
-    public Connection obrir() throws SQLException {
-        var propietats = new Properties();
-        propietats.setProperty("user", usuari);
-        propietats.setProperty("password", contrasenya);
-        propietats.setProperty("connectTimeout", "2");
-        propietats.setProperty("socketTimeout", "2");
-        return DriverManager.getConnection(url, propietats);
-    }
-
     private static String requireEnv(String nom) {
         String valor = System.getenv(nom);
         if (valor == null || valor.isBlank()) {
@@ -30,6 +21,12 @@ public record ConnexioBD(String url, String usuari, String contrasenya) {
         }
         return valor;
     }
+
+    public Connection obrir() throws SQLException {
+        var propietats = new Properties();
+        return DriverManager.getConnection(url, usuari, contrasenya);
+    }
+
 
     // Evitem que el toString generat pel record incloga la contrasenya.
     @Override public String toString() { return "ConnexioBD[configuració JDBC]"; }

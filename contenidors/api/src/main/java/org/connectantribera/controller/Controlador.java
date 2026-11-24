@@ -11,16 +11,31 @@ public final class Controlador {
     public Controlador(Service servei, JsonView vista) { this.servei = servei; this.vista = vista; }
 
     public void get(Context ctx) throws SQLException {
-        ctx.contentType("application/json; charset=utf-8");
-        if (servei.baseDisponible()) {
-            vista.ok(ctx);
-        } else {
-            noDisponible(ctx);
+        String tipus = ctx.pathParam("tipus");
+
+        if (tipus.equals("salut")) {
+            if (servei.baseDisponible()) {
+                ctx.status(200).json("{\"estat\":\"correcte\"}");
+            } else {
+                ctx.status(503).json("{\"estat\":\"no_disponible\"}");
+            }
+            return;
         }
+
+        List<?> resultat = switch (tipus) {
+            case "cataleg" -> servei.llistarCataleg();
+            case "centres" -> servei.llistarCentres();
+            case "contactes" -> servei.llistarContactes();
+            case "entitats" -> servei.llistarEntitats();
+            case "horaris" -> servei.llistarHoraris();
+            case "serveis" -> servei.llistarServeis();
+            case "territori" -> servei.llistarTerritori();
+            default -> throw new IllegalArgumentException(
+                "Tipus desconegut: " + tipus
+            );
+        };
+
+        ctx.json(resultat);
     }
 
-    private void noDisponible(Context ctx) {
-        vista.error(ctx, 503, "El servei no està disponible");
-    }
-    
 }
