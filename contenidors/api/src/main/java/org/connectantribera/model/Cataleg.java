@@ -1,6 +1,7 @@
 package org.connectantribera.model;
 
 public class Cataleg {
+    
     private String tipus;
     private String codi;
     private String nom;

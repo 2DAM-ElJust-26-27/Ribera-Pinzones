@@ -7,6 +7,8 @@ import java.util.Properties;
 
 /** Configuració immutable. Cada operació obri i tanca la seua connexió JDBC. */
 public record ConnexioBD(String url, String usuari, String contrasenya) {
+    
+    
     public static ConnexioBD desDeEntorn() {
         return new ConnexioBD(requireEnv("AD_DB_URL"), requireEnv("AD_DB_USER"),
                 requireEnv("AD_DB_PASSWORD"));
