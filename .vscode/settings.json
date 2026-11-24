@@ -1,5 +1,6 @@
 {
     "java.debug.settings.onBuildFailureProceed": true,
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cmake.sourceDirectory": "C:/Users/ricar/OneDrive/Documents/2DAM/AD/proyectoAPI/app_flutter/linux"
 }

@@ -9,7 +9,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text('Text de la barra')),
-        
+
         body: Center(
           child: ComptadorPreview(
             initialValue: 0,
@@ -25,9 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             maxValue: 6,
             aligment: Axis.horizontal,
           ),
-          
-        )
-
+        ),
       ),
     );
   }
