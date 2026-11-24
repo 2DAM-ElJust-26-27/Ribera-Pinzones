@@ -20,6 +20,7 @@ dependencies {
 
     implementation("org.apache.commons:commons-csv:1.14.1")
     implementation("tools.jackson.core:jackson-databind:3.0.3")
+    implementation("org.postgresql:postgresql:42.7.7")
 }
 
 java {

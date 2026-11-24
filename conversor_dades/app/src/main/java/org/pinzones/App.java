@@ -3,13 +3,13 @@ package org.pinzones;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLException;
 import java.util.stream.Stream;
 
 public class App {
 
     public static void main(String[] args) {
 
-        // Ruta a la carpeta de datos
         Path carpeta = Path.of("dades");
 
         // Comprobar que existe la carpeta
@@ -18,9 +18,8 @@ public class App {
                     + carpeta.toAbsolutePath());
             return;
         }
-        
 
-        // Obtener los archivos de la carpeta
+        // Obtener los archivos de la carpeta y procesarlos
         try (Stream<Path> archivos = Files.list(carpeta)) {
 
             archivos
@@ -34,42 +33,74 @@ public class App {
         }
     }
 
-    // Identificar y procesar cada archivo
     private static void procesarArchivo(Path archivo) {
 
-        String nombre = archivo.getFileName().toString();
+    String archivoCompleto = archivo.getFileName().toString();
+    String nombreArchivo = obtenerNombreA(archivoCompleto);
 
-        int posicion = nombre.lastIndexOf('.');
-        String extension = "";
+    try {
+        switch (nombreArchivo) {
 
-        if (posicion != -1) {
-            extension = nombre.substring(posicion + 1).toLowerCase();
+            case "catalegs":
+                ImportadorCatalegs.importar(archivo);
+                break;
+
+            case "centres":
+                ImportadorCentres.importar(archivo);
+                break;
+
+            case "entitats":
+                ImportadorEntitats.importar(archivo);
+                break;
+
+            case "fonts":
+                ImportadorFonts.importar(archivo);
+                break;
+
+            case "serveis":
+                ImportadorServeis.importar(archivo);
+                break;
+
+            case "territori":
+                ImportadorTerritori.importar(archivo);
+                break;
+
+            default:
+                System.out.println("Formato no reconocido: " + nombreArchivo);
+                break;
         }
 
-        try {
-            switch (extension) {
-
-                case "csv":
-                    FitxersCSV.leer(archivo);
-                    break;
-
-                case "json":
-                    FitxersJSON.leer(archivo);
-                    break;
-
-                case "xml":
-                    FitxersXML.leer(archivo);
-                    break;
-
-                default:
-                    System.out.println("Formato no reconocido: " + nombre);
-                    break;
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error procesando " + nombre + ": "
-                    + e.getMessage());
-        }
+    } catch (IOException | SQLException e) {
+        System.out.println("Error procesando "
+                + archivoCompleto + ": " + e.getMessage());
     }
+}
+
+
+    // Obtener el nombre del archivo sin extensión
+    private static String obtenerNombreA(String archivo) {
+
+        int divisor = archivo.lastIndexOf('.');
+
+        if (divisor != -1) {
+            return archivo.substring(0, divisor).toLowerCase();
+        }
+
+        return archivo.toLowerCase();
+    }
+
+    // Obtener la extensión del archivo
+    /* 
+    private static String obtenerExtensionA(String archivo) {
+
+        int divisor = archivo.lastIndexOf('.');
+
+        if (divisor != -1) {
+            return archivo.substring(divisor + 1).toLowerCase();
+        }
+
+        return "";
+    }
+    */
 }
 
