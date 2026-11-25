@@ -1,8 +1,6 @@
-import 'package:app/screens/mainScreenState.dart';
+import 'package:app/app/MyApp.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/services.dart';
-
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
