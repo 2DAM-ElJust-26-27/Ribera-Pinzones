@@ -1,20 +1,28 @@
+package org.connectantribera.repository;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import org.connectantribera.infra.ConnexioBD;
-import org.
+import org.connectantribera.model.Tipus;
 
-public class Repositori {
-    public List<?> llistarTipus(Connection connexio) throws SQLException {
-        List<?> llista = new ArrayList<?>();
+public final class Repositori {
+    public List<Tipus> llistarTipus(Connection connexio) throws SQLException {
         String sql = "SELECT id, nom FROM ribera.categoria_servei ORDER BY nom";
-        try (PreparedStatement sentencia = connexio.prepareStatement(sql)) {
-            try (ResultSet rs = sentencia.executeQuery()) {
-                while (rs.next()) {
-                    llista.add(maparTipus(rs.getString("tipus")));
-                }
+        List<Tipus> llista = new ArrayList<>();
+
+        try (PreparedStatement sentencia = connexio.prepareStatement(sql);
+            ResultSet resultat = sentencia.executeQuery()) {
+            while (resultat.next()) {
+                llista.add(maparTipus(resultat));
             }
         }
+
         return llista;
+    }
+
+    private Tipus maparTipus(ResultSet resultat) throws SQLException {
+        return new Tipus(resultat.getLong("id"), resultat.getString("nom"));
     }
 }

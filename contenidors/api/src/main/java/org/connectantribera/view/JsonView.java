@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import io.javalin.http.Context;
+import org.connectantribera.view;
 
 public class JsonView {
     private final ConnexioBD configuracio;

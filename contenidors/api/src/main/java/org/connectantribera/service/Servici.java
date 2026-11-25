@@ -25,13 +25,13 @@ public final class Servici {
     public List<?> llistarCategories(String tipus) throws SQLException {
        try (Connection connexio = configuracio.obrir()) {
             return switch (tipus) {
-                case "cataleg" -> repositori.llistarCategoriesServei(connexio);
-                case "centres" -> repositori.llistarCentres(connexio);
-                case "contactes" -> repositori.llistarContactes(connexio);
-                case "entitats" -> repositori.llistarEntitats(connexio);
-                case "horaris" -> repositori.llistarHoraris(connexio);
-                case "serveis" -> repositori.llistarServeis(connexio);
-                case "territori" -> repositori.llistarTerritori(connexio);
+                case "cataleg" -> repositori.llistarTipus(connexio);
+                case "centres" -> repositori.llistarTipus(connexio);
+                case "contactes" -> repositori.llistarTipus(connexio);
+                case "entitats" -> repositori.llistarTipus(connexio);
+                case "horaris" -> repositori.llistarTipus(connexio);
+                case "serveis" -> repositori.llistarTipus(connexio);
+                case "territori" -> repositori.llistarTipus(connexio);
                 default -> throw new IllegalArgumentException(
                     "Tipus desconegut: " + tipus
                 );

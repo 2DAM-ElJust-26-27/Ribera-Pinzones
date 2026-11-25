@@ -20,7 +20,7 @@ public final class Main {
         int port = Integer.parseInt(System.getenv().getOrDefault("API_PORT", "8080"));
 
         Javalin app = Javalin.create(config -> {
-            config.staticFiles.add("/public", Location.CLASSPATH);
+            config.staticFiles.add("/public");
             config.bundledPlugins.enableCors(
                 cors -> cors.addRule(rule -> rule.anyHost())
             );

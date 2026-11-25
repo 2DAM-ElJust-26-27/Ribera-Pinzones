@@ -15,11 +15,13 @@ public final class Controlador {
     public Controlador(Servici servei, JsonView vista) { this.servei = servei; this.vista = vista; }
 
     public void get(Context ctx) throws SQLException {
-        String tipus = ctx.pathParam("tipus");
-        ctx.json(servei.llistarTipus(tipus));
+        String tipus = ctx.pathParam("cataleg");
 
         if (tipus == null || tipus.trim().isEmpty()) {
-            throw new IllegalArgumentException("Falta el paràmetre 'tipus'");
+            throw new IllegalArgumentException("Falta el paràmetre 'cataleg'");
         }
+        
+        ctx.json(servei.llistarTipus(tipus));
+
     }
 }
